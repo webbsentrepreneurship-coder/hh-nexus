@@ -1347,6 +1347,14 @@
 
   renderJournal();
   renderAuthUI();
+  /* Static hosting (GitHub Pages) has no backend: swap the login box for a note, keep the local Journal. */
+  if(location.hostname.endsWith('.github.io')){
+    const bar = document.getElementById('auth-bar');
+    if(bar){
+      bar.innerHTML = '<p class="auth-msg" style="margin:0;text-align:center;">Accounts, XP, and cross-device sync are coming soon. For now your Journal is saved on this device only.</p>';
+    }
+    authToken = null;
+  }
   if(authToken){
     pullJournalFromServer();
     refreshXP();

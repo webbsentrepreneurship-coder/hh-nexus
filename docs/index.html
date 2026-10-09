@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H&H Nexus — The Holler & Hellfire Universe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coal: #14110e;
+    --coal-2: #1c1815;
+    --parchment: #ece1c8;
+    --parchment-dim: #d9caa5;
+    --ember: #b23a22;
+    --ember-bright: #d9542f;
+    --whiskey: #c08a3e;
+    --holler-green: #3d4a34;
+    --iron: #55504a;
+    --sage: #8fa07c;
+    --line: rgba(236,225,200,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--coal);
+    color:var(--parchment);
+    font-family:'Crimson Pro', serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* subtle paper grain */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:1;
+    opacity:0.05;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 0, transparent 1px),
+      radial-gradient(circle at 70% 60%, rgba(255,255,255,0.3) 0, transparent 1px),
+      radial-gradient(circle at 45% 85%, rgba(255,255,255,0.35) 0, transparent 1px);
+    background-size: 3px 3px, 4px 4px, 5px 5px;
+  }
+
+  h1,h2,h3,.stamp{
+    font-family:'Rye', serif;
+    font-weight:400;
+    letter-spacing:0.02em;
+    color:var(--parchment);
+    text-transform:uppercase;
+  }
+
+  .eyebrow{
+    font-family:'Special Elite', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--whiskey);
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,17,14,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brandmark{
+    font-family:'Rye', serif;
+    font-size:1.1rem;
+    letter-spacing:0.04em;
+  }
+  .brandmark span{color:var(--ember-bright);}
+  nav .links{
+    display:flex; gap:26px;
+    font-family:'Special Elite', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  nav .links a{
+    text-decoration:none;
+    color:var(--parchment-dim);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:border-color .2s, color .2s;
+  }
+  nav .links a:hover, nav .links a:focus-visible{
+    color:var(--whiskey);
+    border-color:var(--whiskey);
+  }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--line); color:var(--parchment); padding:8px 12px; font-family:'Special Elite',monospace; font-size:0.75rem; cursor:pointer;}
+
+  /* HERO */
+  header.hero{
+    position:relative;
+    padding:120px 0 90px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(178,58,34,0.18), transparent 70%),
+      linear-gradient(180deg, var(--coal) 0%, #0f0d0b 100%);
+  }
+  header.hero .wrap{ position:relative; z-index:2; text-align:center; }
+  .hero .eyebrow{ display:block; margin-bottom:18px; }
+  h1.wordmark{
+    font-size:clamp(3rem, 9vw, 6.4rem);
+    margin:0;
+    line-height:0.95;
+    color:var(--parchment);
+    text-shadow: 0 0 26px rgba(217,84,47,0.35);
+  }
+  h1.wordmark .flicker{
+    color:var(--ember-bright);
+    animation: emberflicker 4.5s infinite ease-in-out;
+  }
+  @keyframes emberflicker{
+    0%,100%{ opacity:1; text-shadow:0 0 26px rgba(217,84,47,0.45); }
+    45%{ opacity:0.85; text-shadow:0 0 14px rgba(217,84,47,0.25); }
+    55%{ opacity:1; text-shadow:0 0 34px rgba(217,84,47,0.55); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    h1.wordmark .flicker{ animation:none; }
+  }
+  .hero-sub{
+    max-width:620px; margin:26px auto 0;
+    font-size:1.15rem;
+    font-style:italic;
+    color:var(--parchment-dim);
+  }
+  .hero-cta{
+    margin-top:40px;
+    display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Special Elite', monospace;
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:14px 28px;
+    border:1px solid var(--whiskey);
+    background:transparent;
+    color:var(--parchment);
+    text-decoration:none;
+    cursor:pointer;
+    transition: background .2s, color .2s, transform .15s;
+    display:inline-block;
+  }
+  .btn:hover, .btn:focus-visible{ background:var(--whiskey); color:var(--coal); transform:translateY(-1px); }
+  .btn.primary{ background:var(--ember); border-color:var(--ember); color:var(--parchment); }
+  .btn.primary:hover{ background:var(--ember-bright); border-color:var(--ember-bright); color:var(--coal); }
+
+  /* SECTION SHELL */
+  section{ padding:90px 0; border-bottom:1px solid var(--line); position:relative; }
+  section.dark{ background:#100d0b; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .section-head h2{ font-size:clamp(1.8rem, 4vw, 2.6rem); margin:14px 0 16px; }
+  .section-head p{ color:var(--parchment-dim); margin:0; }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+  /* MISSION */
+  .mission-line{
+    max-width:760px; margin:0 auto; text-align:center;
+    font-size:clamp(1.3rem,3vw,1.7rem);
+    font-style:italic;
+    color:var(--parchment);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:44px 0;
+  }
+  .mission-line span{ color:var(--whiskey); font-style:normal; }
+
+  /* SEALS / TIERS */
+  .seals{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:22px;
+  }
+  .seal{
+    background:var(--coal-2);
+    border:1px solid var(--line);
+    padding:28px 22px 24px;
+    position:relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  }
+  .seal::before{
+    content: attr(data-mark);
+    position:absolute; top:-14px; left:22px;
+    background:var(--ember);
+    color:var(--parchment);
+    font-family:'Special Elite', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border:1px solid rgba(0,0,0,0.3);
+  }
+  .seal h3{ font-size:1.3rem; margin:14px 0 4px; }
+  .seal .rank{ display:block; font-family:'Special Elite',monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); margin-bottom:12px; }
+
+  /* CORRIDOR DOORS */
+  .corridor-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+    gap:14px;
+  }
+  .door{
+    border:1px solid var(--line);
+    background:var(--coal-2);
+    padding:26px 14px;
+    text-align:center;
+    position:relative;
+    transition:border-color .2s, transform .15s;
+  }
+  .door:hover{ border-color:var(--ember-bright); transform:translateY(-2px); }
+  .door .glyph{ font-size:1.7rem; display:block; margin-bottom:10px; filter:saturate(0.8); }
+  .door strong{ display:block; font-family:'Special Elite',monospace; font-size:0.82rem; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:6px; color:var(--parchment); }
+  .door p{ margin:0; font-size:0.78rem; color:var(--parchment-dim); line-height:1.4; }
+  .door.locked{ opacity:0.5; border-style:dashed; }
+  .door.locked:hover{ border-color:var(--iron); transform:none; }
+  .door.locked::after{
+    content:"SEALED";
+    position:absolute; top:10px; right:10px;
+    font-family:'Special Elite',monospace;
+    font-size:0.6rem; letter-spacing:0.08em;
+    color:var(--iron);
+  }
+  .seal .price{ font-family:'Special Elite',monospace; color:var(--whiskey); font-size:0.95rem; margin-bottom:8px; display:block;}
+  .seal .flavor{ font-style:italic; color:var(--parchment-dim); font-size:0.88rem; margin:0 0 16px; padding-bottom:14px; border-bottom:1px solid var(--line); }
+  .seal ul{ margin:0; padding-left:18px; color:var(--parchment-dim); font-size:0.95rem; }
+  .seal li{ margin-bottom:6px; }
+  .seal.founders{ border-color:var(--whiskey); }
+  .seal.founders::before{ background:var(--whiskey); color:var(--coal); }
+
+  /* CIRCUIT / XP */
+  .circuit{
+    position:relative;
+    display:flex; flex-wrap:wrap;
+    gap:0;
+    justify-content:space-between;
+    margin-top:10px;
+  }
+  .circuit::before{
+    content:"";
+    position:absolute; top:19px; left:4%; right:4%; height:2px;
+    background: repeating-linear-gradient(90deg, var(--whiskey) 0 10px, transparent 10px 18px);
+    z-index:0;
+  }
+  .waypoint{
+    position:relative; z-index:1;
+    flex:1 1 130px;
+    text-align:center;
+    padding:0 8px 18px;
+  }
+  .waypoint .dot{
+    width:38px; height:38px; margin:0 auto 12px;
+    border-radius:50%;
+    background:var(--coal);
+    border:2px solid var(--ember-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Rye',serif; color:var(--ember-bright); font-size:1rem;
+  }
+  .waypoint p{ margin:0; font-size:0.85rem; color:var(--parchment-dim); }
+  .waypoint strong{ display:block; color:var(--parchment); font-size:0.95rem; margin-bottom:4px; font-family:'Special Elite',monospace; letter-spacing:0.03em; }
+
+  /* LIVING CANON */
+  .canon{
+    background: linear-gradient(180deg, rgba(178,58,34,0.09), transparent 60%);
+    border:1px solid var(--ember);
+    padding:52px 36px;
+    text-align:center;
+    position:relative;
+  }
+  .canon h2{ color:var(--ember-bright); font-size:clamp(2rem,5vw,3rem); margin:0 0 18px;}
+  .canon p{ max-width:680px; margin:0 auto 14px; color:var(--parchment-dim); }
+  .canon .loop{
+    margin-top:34px;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+    font-family:'Special Elite',monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .canon .loop span{
+    border:1px solid var(--whiskey); padding:8px 14px; color:var(--parchment-dim);
+  }
+  .canon .loop .arrow{ border:none; padding:8px 2px; color:var(--whiskey); }
+
+  /* SIX PILLARS OVERVIEW */
+  .pillars-overview{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:18px;
+  }
+  .pillar-tile{
+    border:1px solid var(--line);
+    background:var(--coal-2);
+    padding:26px 20px;
+    text-decoration:none;
+    color:inherit;
+    display:block;
+    transition:border-color .2s, transform .15s;
+  }
+  .pillar-tile:hover{ border-color:var(--ember-bright); transform:translateY(-2px); }
+  .pillar-tile .num{
+    font-family:'Special Elite',monospace;
+    color:var(--ember-bright);
+    font-size:0.7rem; letter-spacing:0.12em;
+    text-transform:uppercase;
+    display:block; margin-bottom:10px;
+  }
+  .pillar-tile .glyph{ font-size:1.7rem; display:block; margin-bottom:10px; }
+  .pillar-tile h3{ font-size:1.05rem; margin:0 0 8px; }
+  .pillar-tile p{ margin:0; font-size:0.82rem; color:var(--parchment-dim); }
+
+  /* GENERIC FEATURE CARDS (Library / Community / Trading Post) */
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:16px;
+  }
+  .feature-card{
+    border:1px solid var(--line);
+    background:var(--coal-2);
+    padding:26px 18px;
+    text-align:center;
+  }
+  .feature-card .glyph{ font-size:1.7rem; display:block; margin-bottom:10px; }
+  .feature-card strong{ display:block; font-family:'Special Elite',monospace; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; color:var(--parchment); }
+  .feature-card p{ margin:0; font-size:0.85rem; color:var(--parchment-dim); }
+
+  /* STAT CHIPS (The Journey profile preview) */
+  .stat-strip{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:38px; }
+  .stat-chip{ border:1px solid var(--whiskey); padding:9px 16px; font-family:'Special Elite',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--parchment-dim); }
+
+  /* APPALACHIAN MAP */
+  .map-board{
+    position:relative;
+    min-height:460px;
+    margin-top:26px;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(192,138,62,0.14), transparent 60%),
+      linear-gradient(160deg, #2b2318 0%, #1c1712 100%);
+    border:2px solid var(--whiskey);
+    overflow:hidden;
+  }
+  .map-board::before{
+    content:"";
+    position:absolute; inset:0; opacity:0.18; pointer-events:none;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(236,225,200,0.05) 0 1px, transparent 1px 40px),
+      repeating-linear-gradient(90deg, rgba(236,225,200,0.05) 0 1px, transparent 1px 40px);
+  }
+  .pin{
+    position:absolute;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    cursor:default;
+  }
+  .pin .glyph{ font-size:1.7rem; display:block; filter:saturate(0.85); }
+  .pin .label{
+    display:block; margin-top:4px;
+    font-family:'Special Elite',monospace; font-size:0.6rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--parchment-dim); white-space:nowrap;
+  }
+  .pin .tip{
+    position:absolute; bottom:120%; left:50%; transform:translateX(-50%);
+    width:180px; background:var(--coal); border:1px solid var(--whiskey);
+    padding:10px 12px; font-size:0.75rem; line-height:1.4;
+    color:var(--parchment-dim); opacity:0; pointer-events:none;
+    transition:opacity .2s; z-index:6;
+    font-family:'Crimson Pro',serif; text-transform:none; letter-spacing:normal;
+  }
+  .pin:hover .tip, .pin:focus .tip{ opacity:1; }
+  .map-caption{ text-align:center; margin-top:16px; font-size:0.82rem; color:var(--iron); font-style:italic; }
+
+  /* LIVING BOOKS DEMO */
+  .book-demo{
+    border:1px solid var(--whiskey);
+    background:var(--coal-2);
+    padding:40px 32px;
+    max-width:680px;
+    margin:0 auto;
+  }
+  .book-demo .toggle-row{ display:flex; gap:12px; justify-content:center; margin-bottom:30px; flex-wrap:wrap; }
+  .book-demo .btn.active{ background:var(--ember); border-color:var(--ember); color:var(--parchment); }
+  .book-passage{
+    font-family:'Crimson Pro', serif;
+    font-size:1.2rem;
+    line-height:1.85;
+    color:var(--parchment);
+    text-align:left;
+    transition:opacity .25s ease;
+    min-height:5.6em;
+  }
+  .book-passage mark{
+    background:transparent;
+    color:var(--ember-bright);
+    font-weight:600;
+    border-bottom:1px dashed var(--ember-bright);
+    padding:0 1px;
+  }
+  .book-meta{
+    margin-top:26px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Special Elite',monospace; font-size:0.72rem; letter-spacing:0.05em;
+    text-transform:uppercase; color:var(--iron); text-align:center;
+    transition:color .25s ease;
+  }
+  .book-meta.unlocked{ color:var(--sage); }
+
+  /* TIMELINE DEMO */
+  .timeline-track{
+    display:flex; gap:0; overflow-x:auto;
+    padding:22px 4px 28px;
+    border-bottom:1px solid var(--line);
+    scroll-snap-type:x proximity;
+  }
+  .timeline-node{
+    flex:0 0 132px;
+    scroll-snap-align:start;
+    text-align:center;
+    cursor:pointer;
+    padding:14px 8px 18px;
+    border-bottom:3px solid var(--line);
+    background:none; border-top:none; border-left:none; border-right:none;
+    transition:border-color .2s;
+    font-family:inherit; color:inherit;
+  }
+  .timeline-node:hover{ border-color:var(--whiskey); }
+  .timeline-node.active{ border-color:var(--ember-bright); }
+  .timeline-node .era-glyph{ font-size:1.5rem; display:block; margin-bottom:8px; }
+  .timeline-node .era-year{ font-family:'Special Elite',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--iron); display:block; margin-bottom:5px; }
+  .timeline-node .era-name{ font-family:'Special Elite',monospace; font-size:0.76rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--parchment-dim); display:block; }
+  .timeline-node.active .era-name{ color:var(--ember-bright); }
+  .timeline-detail{
+    border:1px solid var(--whiskey);
+    background:var(--coal-2);
+    padding:32px 28px;
+    margin-top:16px;
+    transition:opacity .25s ease;
+  }
+  .timeline-detail .era-tag{ font-family:'Special Elite',monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--sage); display:block; margin-bottom:12px; }
+  .timeline-detail h3{ margin:0 0 12px; font-size:1.35rem; color:var(--ember-bright); }
+  .timeline-detail p{ margin:0; color:var(--parchment-dim); }
+
+  /* JOURNAL BADGE */
+  .journal-badge{
+    position:fixed; bottom:20px; right:20px; z-index:500;
+    width:56px; height:56px; border-radius:50%;
+    background:var(--coal-2); border:1px solid var(--whiskey);
+    color:var(--parchment); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,0.4);
+    transition:transform .15s, border-color .2s;
+  }
+  .journal-badge:hover{ transform:translateY(-2px); border-color:var(--ember-bright); }
+  .journal-badge-glyph{ font-size:1.4rem; }
+  .journal-badge-count{
+    position:absolute; top:-4px; right:-4px;
+    min-width:20px; height:20px; padding:0 5px;
+    border-radius:10px; background:var(--ember);
+    color:var(--parchment); font-family:'Special Elite',monospace;
+    font-size:0.68rem; display:flex; align-items:center; justify-content:center;
+  }
+  .journal-badge-count.empty{ display:none; }
+
+  /* LIVE JOURNAL LOG */
+  .journal-log{
+    border:1px solid var(--whiskey);
+    background:var(--coal-2);
+    padding:36px 32px;
+    max-width:680px;
+    margin:0 auto;
+  }
+  .journal-log ul{ list-style:none; margin:0; padding:0; }
+  .journal-log li{
+    font-family:'Crimson Pro', serif; font-style:italic;
+    color:var(--parchment); font-size:1.05rem; line-height:1.7;
+    padding:14px 0; border-bottom:1px solid var(--line);
+  }
+  .journal-log li:last-child{ border-bottom:none; }
+  .journal-log .empty-state{
+    text-align:center; color:var(--iron); font-style:italic;
+    font-family:'Crimson Pro', serif; font-size:1rem;
+  }
+
+  /* AUTH BAR */
+  .auth-bar{
+    max-width:680px; margin:0 auto 20px;
+    border:1px solid var(--whiskey); background:var(--coal-2);
+    padding:24px 28px;
+  }
+  .auth-signedout{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .auth-signedout input{
+    flex:1 1 200px; background:var(--coal); border:1px solid var(--line);
+    color:var(--parchment); padding:10px 12px; font-family:'Crimson Pro', serif; font-size:0.95rem;
+  }
+  .auth-actions{ display:flex; gap:8px; flex:0 0 auto; }
+  .auth-msg{ flex:1 1 100%; margin:8px 0 0; font-size:0.78rem; color:var(--iron); font-style:italic; }
+  .auth-msg.error{ color:var(--ember-bright); }
+  .auth-signedin{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; color:var(--parchment-dim); font-size:0.92rem; }
+  .auth-signedin strong{ color:var(--sage); }
+
+  /* XP PANEL */
+  .xp-panel{ margin-top:18px; padding-top:18px; border-top:1px solid var(--line); }
+  .xp-row{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+  .xp-level{ font-family:'Special Elite',monospace; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--parchment-dim); }
+  .xp-level strong{ color:var(--ember-bright); font-size:1rem; }
+  .xp-streak{ font-family:'Special Elite',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--iron); }
+  .xp-bar-track{ height:8px; background:var(--coal); border:1px solid var(--line); overflow:hidden; }
+  .xp-bar-fill{ height:100%; background:var(--ember); transition:width .4s ease; }
+  .xp-caption{ margin:8px 0 0; font-size:0.78rem; color:var(--iron); font-style:italic; text-align:center; }
+  .xp-caption.earned{ color:var(--sage); }
+
+  /* CTA / SIGNUP */
+  .signup{
+    text-align:center;
+  }
+  .signup form{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    margin-top:28px;
+  }
+  .signup input[type=email]{
+    background:var(--coal-2);
+    border:1px solid var(--iron);
+    color:var(--parchment);
+    padding:14px 16px;
+    font-family:'Crimson Pro',serif;
+    font-size:1rem;
+    min-width:260px;
+  }
+  .signup input[type=email]:focus-visible{ outline:2px solid var(--whiskey); }
+  .signup .note{ margin-top:14px; font-size:0.82rem; color:var(--iron); }
+
+  footer{
+    padding:40px 0 60px;
+    text-align:center;
+    font-family:'Special Elite',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    color:var(--iron);
+  }
+  footer .brandmark{ font-size:0.95rem; color:var(--parchment-dim); margin-bottom:8px; display:block;}
+
+  @media (max-width:720px){
+    nav .links{
+      position:fixed; top:56px; left:0; right:0;
+      background:var(--coal); border-bottom:1px solid var(--line);
+      flex-direction:column; padding:18px 24px; gap:16px;
+      transform:translateY(-130%); transition:transform .25s ease;
+    }
+    nav .links.open{ transform:translateY(0); }
+    .nav-toggle{ display:block; }
+    .circuit::before{ display:none; }
+    .circuit{ flex-direction:column; }
+    .waypoint{ display:flex; align-items:center; gap:14px; text-align:left; padding:10px 0; }
+    .waypoint .dot{ margin:0; flex-shrink:0; }
+    .map-board{ min-height:380px; }
+    .pin .glyph{ font-size:1.3rem; }
+    .pin .tip{ width:140px; font-size:0.68rem; }
+  }
+</style>
+</head>
+<body>
+
+<button class="journal-badge" id="journal-badge" onclick="document.getElementById('mylog').scrollIntoView({behavior:'smooth'})" aria-label="Your Journal">
+  <span class="journal-badge-glyph">📖</span>
+  <span class="journal-badge-count" id="journal-badge-count">0</span>
+</button>
+
+<nav>
+  <div class="wrap">
+    <div class="brandmark">H&H <span>NEXUS</span></div>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('open')">MENU</button>
+    <div class="links">
+      <a href="#pillars">The Six Pillars</a>
+      <a href="#phase-two">Nexus 2.0</a>
+      <a href="#map">The Map</a>
+      <a href="#seals">Seals</a>
+      <a href="#join">Join</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Something Keeps The Door From Closing</span>
+    <h1 class="wordmark">H&amp;H <span class="flicker">Nexus</span></h1>
+    <p class="hero-sub">Every holler has a door in it somewhere. This is where you find out what's on the other side of the corridor — and what it wants from you for the privilege.</p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#join">Cross Over — Free</a>
+      <a class="btn" href="#seals">Count the Seals</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="mission-line reveal">Every book, song, secret, and soul the Universe has swallowed — kept in <span>one place</span>, tended by <span>one hand</span>, and given up only to those who come <span>looking for it</span>.</p>
+  </div>
+</section>
+
+<section id="pillars" class="dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Operating System</span>
+      <h2>Six Pillars</h2>
+      <p>H&amp;H Nexus isn't a screen. It's six of them, holding up everything the Universe is and everything it's still becoming.</p>
+    </div>
+    <div class="pillars-overview reveal">
+      <a class="pillar-tile" href="#corridor">
+        <span class="num">Pillar I</span>
+        <span class="glyph">🚪</span>
+        <h3>The Corridor</h3>
+        <p>The home screen. Every door leads somewhere. Some don't exist yet.</p>
+      </a>
+      <a class="pillar-tile" href="#library">
+        <span class="num">Pillar II</span>
+        <span class="glyph">📚</span>
+        <h3>The Library</h3>
+        <p>Every book, comic, and soundtrack the Universe has produced — catalogued and searchable.</p>
+      </a>
+      <a class="pillar-tile" href="#journey">
+        <span class="num">Pillar III</span>
+        <span class="glyph">🧭</span>
+        <h3>The Journey</h3>
+        <p>Who you become inside it. XP, reputation, titles, the choices that follow you.</p>
+      </a>
+      <a class="pillar-tile" href="#community">
+        <span class="num">Pillar IV</span>
+        <span class="glyph">👥</span>
+        <h3>The Community</h3>
+        <p>Guilds, theories, submissions — the people who never left the corridor.</p>
+      </a>
+      <a class="pillar-tile" href="#trading-post">
+        <span class="num">Pillar V</span>
+        <span class="glyph">🛒</span>
+        <h3>The Trading Post</h3>
+        <p>Merch, signed editions, collectibles — proof you were actually here.</p>
+      </a>
+      <a class="pillar-tile" href="#canon">
+        <span class="num">Pillar VI</span>
+        <span class="glyph">🌎</span>
+        <h3>The Living Universe</h3>
+        <p>The part that moves without you. Seasonal lore, world events, things that remember you.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="corridor">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pillar I — The Home Screen</span>
+      <h2>The Corridor</h2>
+      <p>There's no dashboard here. There's a corridor, and it has doors. Some open the moment you walk in. Some don't open until you've earned the right.</p>
+    </div>
+    <div class="corridor-grid reveal">
+      <div class="door"><span class="glyph">📖</span><strong>Books</strong><p>The novels, chapter by chapter</p></div>
+      <div class="door"><span class="glyph">♪</span><strong>Music</strong><p>Dixie Deadshot's discography</p></div>
+      <div class="door"><span class="glyph">🎨</span><strong>Comics</strong><p>The graphic novel line</p></div>
+      <div class="door"><span class="glyph">☙</span><strong>The Codex</strong><p>Characters, factions, timeline</p></div>
+      <div class="door"><span class="glyph">👥</span><strong>Community</strong><p>Theories, feed, discussion</p></div>
+      <div class="door locked"><span class="glyph">🕯️</span><strong>KIRO</strong><p>Opens with the AI Characters layer</p></div>
+      <div class="door locked"><span class="glyph">📻</span><strong>Hellfire Radio</strong><p>Sealed until launch</p></div>
+      <div class="door locked"><span class="glyph">🗝️</span><strong>The Archives</strong><p>Full timeline — Archivist seal required</p></div>
+      <div class="door locked"><span class="glyph">🛒</span><strong>Marketplace</strong><p>Merch &amp; collectibles — coming soon</p></div>
+      <div class="door locked"><span class="glyph">?</span><strong>Hidden Door</strong><p>Found inside Chapter 8. Ask around.</p></div>
+      <div class="door locked"><span class="glyph">🎲</span><strong>Fate Engine</strong><p>Your quest, nobody else's — assigned nightly</p></div>
+      <div class="door locked"><span class="glyph">📖</span><strong>Living Books</strong><p>Chapters that change after you've read what comes next</p></div>
+      <div class="door locked"><span class="glyph">🧩</span><strong>The ARG</strong><p>Clues hidden across every product the Universe makes</p></div>
+      <div class="door locked"><span class="glyph">🕰️</span><strong>The Timeline</strong><p>Thousands of years, tap to unfold</p></div>
+      <div class="door locked"><span class="glyph">👻</span><strong>Echoes</strong><p>What other readers left behind, without spoiling a thing</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="threshold">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Before You See Anything Else — Phase Two</span>
+      <h2>The Door Chooses You</h2>
+      <p>Nobody walks into the Corridor blind. Seven questions, asked once, at the threshold. What comes after depends on what you answer — not what you meant to answer.</p>
+    </div>
+    <div class="pillars-overview reveal">
+      <div class="pillar-tile">
+        <span class="glyph">📜</span>
+        <h3>Archivist</h3>
+        <p>You see the Codex first. Everything is a clue if you look long enough.</p>
+      </div>
+      <div class="pillar-tile">
+        <span class="glyph">⚔️</span>
+        <h3>Hunter</h3>
+        <p>You see the quests first. Something out there is worth chasing.</p>
+      </div>
+      <div class="pillar-tile">
+        <span class="glyph">🔥</span>
+        <h3>Hellfire</h3>
+        <p>You see the music first. The Corridor already knows your favorite song.</p>
+      </div>
+      <div class="pillar-tile">
+        <span class="glyph">🕯️</span>
+        <h3>Keeper</h3>
+        <p>You see the community first. You were never meant to do this alone.</p>
+      </div>
+      <div class="pillar-tile">
+        <span class="glyph">🌙</span>
+        <h3>Seer</h3>
+        <p>You see the omens first. The Corridor already knows what's coming.</p>
+      </div>
+    </div>
+    <p class="map-caption">Same Universe, five first looks at it. Nobody starts in the same room.</p>
+  </div>
+</section>
+
+<section id="library" class="dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pillar II — The Archive</span>
+      <h2>The Library</h2>
+      <p>Everything the Universe has produced, in one catalogue. Nothing goes out of print here.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="feature-card"><span class="glyph">📖</span><strong>Books</strong><p>The full H&amp;H fiction series, volume by volume</p></div>
+      <div class="feature-card"><span class="glyph">🎨</span><strong>Comics</strong><p>The graphic novel line, as it releases</p></div>
+      <div class="feature-card"><span class="glyph">♪</span><strong>Soundtracks</strong><p>15 albums deep and still recording</p></div>
+      <div class="feature-card"><span class="glyph">☙</span><strong>The Codex</strong><p>Searchable characters, factions, and timeline</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pillar III — Who You Become</span>
+      <h2>The Journey</h2>
+      <p>Nobody rides for free. Every stop costs you something — time, attention, a little piece of yourself — and pays out in XP, titles, and secrets the Codex keeps locked from everyone else.</p>
+    </div>
+    <div class="circuit reveal">
+      <div class="waypoint"><div class="dot">✦</div><strong>Read</strong><p>Chapters &amp; Codex entries</p></div>
+      <div class="waypoint"><div class="dot">♪</div><strong>Listen</strong><p>Albums &amp; track drops</p></div>
+      <div class="waypoint"><div class="dot">◈</div><strong>Solve</strong><p>Lore mysteries &amp; quests</p></div>
+      <div class="waypoint"><div class="dot">✉</div><strong>Invite</strong><p>Bring fellow wanderers</p></div>
+      <div class="waypoint"><div class="dot">☙</div><strong>Discuss</strong><p>Community theories</p></div>
+      <div class="waypoint"><div class="dot">✧</div><strong>Gather</strong><p>Merch &amp; collectibles</p></div>
+    </div>
+    <div class="stat-strip reveal">
+      <span class="stat-chip">Reputation</span>
+      <span class="stat-chip">Alignment</span>
+      <span class="stat-chip">Faction</span>
+      <span class="stat-chip">Titles</span>
+      <span class="stat-chip">Achievements</span>
+      <span class="stat-chip">Collections</span>
+      <span class="stat-chip">Inventory</span>
+    </div>
+  </div>
+</section>
+
+<section id="community" class="dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pillar IV — The People</span>
+      <h2>The Community</h2>
+      <p>The Universe doesn't run without the people keeping it alive between chapters.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="feature-card"><span class="glyph">⚔️</span><strong>Guilds</strong><p>Bands of Wanderers who ride together</p></div>
+      <div class="feature-card"><span class="glyph">🗣️</span><strong>Forums</strong><p>Theories, arguments, and confessions</p></div>
+      <div class="feature-card"><span class="glyph">✍️</span><strong>Creator Submissions</strong><p>Worldbuilding brought to the door</p></div>
+      <div class="feature-card"><span class="glyph">🎤</span><strong>Live Events</strong><p>Livestreams &amp; Q&amp;As, in real time</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="trading-post">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pillar V — What You Take With You</span>
+      <h2>The Trading Post</h2>
+      <p>Proof you were here, in whatever form you want it.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="feature-card"><span class="glyph">🛍️</span><strong>Merchandise</strong><p>Official H&amp;H gear</p></div>
+      <div class="feature-card"><span class="glyph">✒️</span><strong>Signed Editions</strong><p>Limited physical runs</p></div>
+      <div class="feature-card"><span class="glyph">🪙</span><strong>Digital Collectibles</strong><p>Seasonal drops, tied to your Journey</p></div>
+      <div class="feature-card"><span class="glyph">🤝</span><strong>Creator Marketplace</strong><p>Guild members sell their own canon-adjacent work</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="canon" class="dark">
+  <div class="wrap">
+    <div class="canon reveal">
+      <span class="eyebrow">Pillar VI — What Moves Without You</span>
+      <h2>Living Canon</h2>
+      <p>The lore doesn't hold still, and it was never meant to. Clues wait buried in books, songs, and comics for someone patient enough to dig them out. Community events crack Codex chapters open like ribs, and factions surface that nobody saw coming. Guild members bring their own worldbuilding to the door — and if Holler &amp; Hellfire Studios lets it through, it stops being theirs. It becomes canon. It becomes real.</p>
+      <p>Fans stop reading the Universe. They start <em>feeding</em> it.</p>
+      <div class="loop">
+        <span>Hidden Clue</span><span class="arrow">→</span>
+        <span>Community Unlocks It</span><span class="arrow">→</span>
+        <span>New Codex Chapter</span><span class="arrow">→</span>
+        <span>Guild Submission</span><span class="arrow">→</span>
+        <span>Approved Canon</span>
+      </div>
+    </div>
+    <div class="feature-grid reveal" style="margin-top:36px;">
+      <div class="feature-card"><span class="glyph">🌗</span><strong>Seasonal Lore</strong><p>The Codex changes with the calendar</p></div>
+      <div class="feature-card"><span class="glyph">🔥</span><strong>World Events</strong><p>Community actions shift the story</p></div>
+      <div class="feature-card"><span class="glyph">🕯️</span><strong>AI Characters</strong><p>Conversations that remember you — Phase 3</p></div>
+      <div class="feature-card"><span class="glyph">🧩</span><strong>Global Puzzles</strong><p>Solved together, or not at all</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="phase-two">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Sealed Until Phase Two</span>
+      <h2>Nexus 2.0</h2>
+      <p>The Corridor as it stands is the first draft of the door. What's sealed behind it is where the Universe stops being something you read and starts being something that reads you back.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="feature-card"><span class="glyph">📜</span><strong>The Daily Omen</strong><p>One line, every day. Some are just weather. Some unlock something.</p></div>
+      <div class="feature-card"><span class="glyph">🎲</span><strong>Fate Engine</strong><p>Nobody picks their quest. The Corridor picks it for them.</p></div>
+      <div class="feature-card"><span class="glyph">📻</span><strong>Hellfire Radio</strong><p>A station that never signs off — broadcasts, weather from the Hollers, emergency alerts when the story shifts.</p></div>
+      <div class="feature-card"><span class="glyph">🏡</span><strong>Claim Your Holler</strong><p>A place of your own inside the Universe. Relics, a campfire, a guest book.</p></div>
+      <div class="feature-card"><span class="glyph">🎥</span><strong>The Studio, Live</strong><p>Watch the Universe get built — writing, music, comics, votes, streams.</p></div>
+      <div class="feature-card"><span class="glyph">🧩</span><strong>The ARG</strong><p>Clues buried in songs, merch, and mailers. Solved together, or not at all.</p></div>
+      <div class="feature-card"><span class="glyph">🕰️</span><strong>The Timeline</strong><p>Thousands of years of the Universe's history, one tap from any moment in it.</p></div>
+      <div class="feature-card"><span class="glyph">📖</span><strong>Living Books</strong><p>Go back to Chapter 2 after finishing Chapter 10. A sentence has changed.</p></div>
+      <div class="feature-card"><span class="glyph">👻</span><strong>Echoes</strong><p>What other readers left behind at the moment that mattered to them — without spoiling it for you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="living-books-demo" class="dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Try It — Living Books</span>
+      <h2>The Same Paragraph, Before and After</h2>
+      <p>This is the actual mechanic. One passage from <em>Fallin' For A Fallen</em>, read two ways — once as any first-time Wanderer sees it, once as it reads after Chapter 10 explains the curse.</p>
+    </div>
+    <div class="book-demo reveal">
+      <div class="toggle-row">
+        <button class="btn active" id="btn-before" onclick="showBook('before')">Before Chapter 10</button>
+        <button class="btn" id="btn-after" onclick="showBook('after')">After Chapter 10</button>
+      </div>
+      <p class="book-passage" id="book-text">Azazel watched Raelee from the tree line. She never noticed the figure standing among the pines.</p>
+      <p class="book-meta" id="book-meta">Read as any first-time Wanderer sees it — Chapter 2</p>
+    </div>
+  </div>
+</section>
+
+<section id="journal" class="dark">
+  <div class="wrap">
+    <div class="canon reveal">
+      <span class="eyebrow">The One Idea Worth Building First</span>
+      <h2>The Book Remembers</h2>
+      <p>Every Wanderer keeps a Living Journal without ever opening one. It records what you've read, who you trusted, what you solved, what you found, and what you joined — written as if the Universe itself is the one keeping the record.</p>
+      <p style="font-style:italic; color:var(--whiskey); max-width:620px; margin:22px auto; font-size:1.05rem;">"On the seventeenth night, the Corridor recognized your footsteps. It no longer questioned whether you belonged."</p>
+      <p>Not a trophy case. A chronicle. Months and years in, no two Journals read the same — because no two people crossed the threshold the same way.</p>
+      <div class="loop">
+        <span>You Read</span><span class="arrow">→</span>
+        <span>You Choose</span><span class="arrow">→</span>
+        <span>The Corridor Remembers</span><span class="arrow">→</span>
+        <span>Your Journal Grows</span>
+      </div>
+    </div>
+    <p style="margin-top:36px; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color:var(--parchment-dim);">Eventually, one Nexus API ties every H&amp;H product to the same account — apps, games, comics, audiobooks, merch, live events all sharing the same XP, achievements, and Journal. Scan a code inside a physical graphic novel and a hidden Corridor door opens on your phone before you've closed the book. The Universe doesn't care which door you walked through first.</p>
+  </div>
+</section>
+
+<section id="map">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How You'll Actually Move Through It</span>
+      <h2>The Appalachian Map</h2>
+      <p>No menus. An old map of the Universe, and every place on it holds something. Hover a marker — or picture it moving under your thumb.</p>
+    </div>
+    <div class="map-board reveal">
+      <div class="pin" style="top:12%; left:18%;" tabindex="0">
+        <span class="glyph">🏔️</span><span class="label">Mountains</span>
+        <div class="tip">Old-timers say the corridor door opened somewhere up here first.</div>
+      </div>
+      <div class="pin" style="top:22%; left:58%;" tabindex="0">
+        <span class="glyph">🌲</span><span class="label">Forests</span>
+        <div class="tip">Songs come out of these woods that nobody remembers writing.</div>
+      </div>
+      <div class="pin" style="top:48%; left:32%;" tabindex="0">
+        <span class="glyph">🏚️</span><span class="label">Hollers</span>
+        <div class="tip">Raelee Calhoun's holler. Home, for whatever that's worth to her now.</div>
+      </div>
+      <div class="pin" style="top:16%; left:80%;" tabindex="0">
+        <span class="glyph">⛪</span><span class="label">Churches</span>
+        <div class="tip">Tent revivals still happen out here. Not all the preachers are still breathing.</div>
+      </div>
+      <div class="pin" style="top:62%; left:68%;" tabindex="0">
+        <span class="glyph">🚂</span><span class="label">Railroads</span>
+        <div class="tip">Tracks that don't lead anywhere on any map but this one.</div>
+      </div>
+      <div class="pin" style="top:74%; left:22%;" tabindex="0">
+        <span class="glyph">🕳️</span><span class="label">Mines</span>
+        <div class="tip">Something old still lives in the shafts nobody sealed properly.</div>
+      </div>
+      <div class="pin" style="top:82%; left:50%;" tabindex="0">
+        <span class="glyph">🏚️</span><span class="label">Ghost Towns</span>
+        <div class="tip">Whole towns emptied out overnight. Nobody asks why anymore.</div>
+      </div>
+    </div>
+    <p class="map-caption">Static preview — the real map expands as the Universe does. Hover or tab through the markers above.</p>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Try It — The Universe Timeline</span>
+      <h2>Thousands of Years, One Tap Away</h2>
+      <p>Placeholder eras, real mechanic. Tap a marker to jump through the Universe's history — this is how the full Timeline will work once every era is written.</p>
+    </div>
+    <div class="timeline-track reveal" id="timeline-track"></div>
+    <div class="timeline-detail reveal" id="timeline-detail"></div>
+  </div>
+</section>
+
+<section id="mylog" class="dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Try It — The Book Remembers</span>
+      <h2>Your Journal</h2>
+      <p>Nothing here is added by you. It's written by what you've already done above — reveal a passage, step through an era, and the Corridor takes note.</p>
+    </div>
+    <div class="auth-bar reveal" id="auth-bar">
+      <div class="auth-signedout" id="auth-signedout">
+        <input type="email" id="auth-email" placeholder="your@email.com" autocomplete="email">
+        <input type="password" id="auth-password" placeholder="password (8+ characters)" autocomplete="current-password">
+        <div class="auth-actions">
+          <button class="btn" onclick="handleAuth('login')">Log In</button>
+          <button class="btn primary" onclick="handleAuth('signup')">Sign Up</button>
+        </div>
+        <p class="auth-msg" id="auth-msg">Sign up to carry your Journal to any device.</p>
+      </div>
+      <div class="auth-signedin" id="auth-signedin" hidden>
+        <span>Signed in as <strong id="auth-email-display"></strong> — Journal is synced across devices.</span>
+        <button class="btn" onclick="handleLogout()">Log Out</button>
+      </div>
+      <div class="xp-panel" id="xp-panel" hidden>
+        <div class="xp-row">
+          <span class="xp-level">Level <strong id="xp-level-num">1</strong></span>
+          <span class="xp-streak" id="xp-streak-label">Streak: 1 day</span>
+        </div>
+        <div class="xp-bar-track"><div class="xp-bar-fill" id="xp-bar-fill"></div></div>
+        <p class="xp-caption" id="xp-caption"></p>
+      </div>
+    </div>
+    <div class="journal-log reveal" id="journal-log">
+      <p class="empty-state">The Corridor hasn't noticed you yet.</p>
+    </div>
+  </div>
+</section>
+
+<section id="seals" class="dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What You're Owed</span>
+      <h2>Five Seals of the Corridor</h2>
+      <p>The Seals don't unlock one pillar. Break one, and it shifts what you can reach across all six.</p>
+    </div>
+    <div class="seals">
+      <div class="seal reveal" data-mark="Unbroken · Free">
+        <h3>The Wanderer</h3>
+        <span class="rank">Rank: Visitor</span>
+        <span class="price">Free, always</span>
+        <p class="flavor">The unbroken seal. Anyone can look. Not everyone stays.</p>
+        <ul>
+          <li>Read free chapters</li>
+          <li>Listen to selected songs</li>
+          <li>Basic Codex access</li>
+          <li>Community forums</li>
+          <li>Weekly lore drops</li>
+          <li>Earn XP &amp; badges</li>
+        </ul>
+      </div>
+      <div class="seal reveal" data-mark="First Seal">
+        <h3>Hellfire Member</h3>
+        <span class="rank">Rank: Disciple</span>
+        <span class="price">$4.99 / month</span>
+        <p class="flavor">The first seal breaks quiet enough. You won't notice until it's already open.</p>
+        <ul>
+          <li>Everything in Wanderer</li>
+          <li>Early chapter releases</li>
+          <li>Exclusive music</li>
+          <li>Monthly digital collectibles</li>
+          <li>Member-only Discord channels</li>
+          <li>Voting on community events</li>
+          <li>Bonus lore</li>
+        </ul>
+      </div>
+      <div class="seal reveal" data-mark="Second Seal">
+        <h3>Archivist</h3>
+        <span class="rank">Rank: Lore Keeper</span>
+        <span class="price">$9.99 / month</span>
+        <p class="flavor">You start remembering things you never actually read.</p>
+        <ul>
+          <li>Everything in Hellfire</li>
+          <li>Full H&amp;H Codex</li>
+          <li>Interactive timeline</li>
+          <li>Character relationship maps</li>
+          <li>Behind-the-scenes content</li>
+          <li>Monthly livestreams</li>
+          <li>Exclusive short stories</li>
+        </ul>
+      </div>
+      <div class="seal reveal" data-mark="Third Seal">
+        <h3>Creator Guild</h3>
+        <span class="rank">Rank: Builder of Canon</span>
+        <span class="price">$19.99 / month</span>
+        <p class="flavor">The Universe starts listening back. Mind what you build for it.</p>
+        <ul>
+          <li>Everything in Archivist</li>
+          <li>Creator workshops</li>
+          <li>Worldbuilding guides</li>
+          <li>Canon submission opportunities</li>
+          <li>Portfolio showcase</li>
+          <li>Monthly feedback sessions</li>
+          <li>Collaboration channels</li>
+        </ul>
+      </div>
+      <div class="seal founders reveal" data-mark="Final Seal">
+        <h3>Founders Circle</h3>
+        <span class="rank">Rank: Architect of the Universe</span>
+        <span class="price">$49.99 / month</span>
+        <p class="flavor">You don't just fund the Universe anymore. You're written into it.</p>
+        <ul>
+          <li>Everything above</li>
+          <li>Quarterly Q&amp;A sessions</li>
+          <li>Exclusive merch discounts</li>
+          <li>Name in supporter credits</li>
+          <li>Early beta access</li>
+          <li>Limited-edition collectibles</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="join" class="signup dark">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:0;">
+      <span class="eyebrow">Step Through</span>
+      <h2>The Door's Open</h2>
+      <p>Leave your name at the corridor. It costs nothing to cross — for now. First lore drop, first chapter, first invite.</p>
+    </div>
+    <form onsubmit="event.preventDefault(); document.getElementById('formNote').textContent='This is a design preview — hook this form up to Brevo or Mailchimp to start collecting real signups.';">
+      <input type="email" placeholder="your@email.com" required aria-label="Email address">
+      <button class="btn primary" type="submit">Enter the Nexus</button>
+    </form>
+    <p class="note" id="formNote">No spam. Just whatever the corridor lets through, once a week.</p>
+  </div>
+</section>
+
+<footer>
+  <span class="brandmark">HOLLER &amp; HELLFIRE</span>
+  A Webbs Entrepreneurship production · Washburn, Missouri
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.15 });
+  revealEls.forEach(el=>io.observe(el));
+
+  const BOOK_TEXT = {
+    before: "Azazel watched Raelee from the tree line. She never noticed the figure standing among the pines.",
+    after: "Azazel watched Raelee from the tree line, <mark>careful not to cross the boundary that had imprisoned him for centuries</mark>. She never noticed the figure standing among the pines<mark>—or the invisible barrier between them</mark>."
+  };
+  function showBook(state){
+    const text = document.getElementById('book-text');
+    const meta = document.getElementById('book-meta');
+    const before = document.getElementById('btn-before');
+    const after = document.getElementById('btn-after');
+    text.style.opacity = 0;
+    setTimeout(()=>{
+      if(state === 'before'){
+        text.innerHTML = BOOK_TEXT.before;
+        meta.textContent = 'Read as any first-time Wanderer sees it — Chapter 2';
+        meta.classList.remove('unlocked');
+        before.classList.add('active'); after.classList.remove('active');
+      } else {
+        text.innerHTML = BOOK_TEXT.after;
+        meta.textContent = 'Unlocked — the curse binding Azazel to the mountain, explained in Chapter 10';
+        meta.classList.add('unlocked');
+        before.classList.remove('active'); after.classList.add('active');
+        recordBookReveal();
+      }
+      text.style.opacity = 1;
+    }, 200);
+  }
+
+  const ERAS = [
+    { glyph:'🌌', year:'Pre-Corridor', name:'The Older Mechanism', tag:'Before Time', body:"Before Heaven had a name, there was the Older Mechanism — the cosmology the Grigori answered to before anything else existed to answer to." },
+    { glyph:'⚖️', year:'First Age', name:'The Sundering', tag:'Placeholder Era', body:"The Grigori are cast out. Azazel loses his wings. What's left of the old order scatters into corridors nobody can find twice." },
+    { glyph:'⛓️', year:'Centuries Past', name:'The Binding', tag:'Placeholder Era', body:"Azazel is bound to the mountain — imprisoned by a boundary he can watch through but never cross." },
+    { glyph:'🏚️', year:'Generations Ago', name:'The Founding of the Hollers', tag:'Placeholder Era', body:"Families settle land that already had something living in it. Nobody asks what came first." },
+    { glyph:'🕯️', year:'Present Day', name:'Raelee Inherits the Door', tag:'Placeholder Era', body:"Raelee Calhoun becomes responsible for a corridor door she never asked to open." },
+    { glyph:'🔜', year:"What's Next", name:'Sealed', tag:'Unwritten', body:"The rest hasn't been written yet — or it has, and nobody's found it." }
+  ];
+
+  function renderTimeline(){
+    const track = document.getElementById('timeline-track');
+    track.innerHTML = ERAS.map((e,i)=>
+      `<button class="timeline-node${i===0?' active':''}" data-i="${i}" onclick="showEra(${i})">
+        <span class="era-glyph">${e.glyph}</span>
+        <span class="era-year">${e.year}</span>
+        <span class="era-name">${e.name}</span>
+      </button>`
+    ).join('');
+    showEra(0, true);
+  }
+  function showEra(i, silent){
+    const e = ERAS[i];
+    const detail = document.getElementById('timeline-detail');
+    detail.style.opacity = 0;
+    setTimeout(()=>{
+      detail.innerHTML = `<span class="era-tag">${e.tag}</span><h3>${e.name}</h3><p>${e.body}</p>`;
+      detail.style.opacity = 1;
+    }, 150);
+    document.querySelectorAll('.timeline-node').forEach((n,idx)=>{
+      n.classList.toggle('active', idx===i);
+    });
+    if(!silent) recordEraView(i);
+  }
+  renderTimeline();
+
+  /* ---- JOURNAL (persistence layer) ---- */
+  const JOURNAL_KEY = 'hhJournal';
+  const AUTH_TOKEN_KEY = 'hhAuthToken';
+  const AUTH_EMAIL_KEY = 'hhAuthEmail';
+
+  function loadJournal(){
+    try{
+      const raw = localStorage.getItem(JOURNAL_KEY);
+      return raw ? JSON.parse(raw) : { book:false, eras:[] };
+    }catch(e){ return { book:false, eras:[] }; }
+  }
+  function saveJournalLocal(j){
+    try{ localStorage.setItem(JOURNAL_KEY, JSON.stringify(j)); }catch(e){}
+  }
+  let journal = loadJournal();
+  let authToken = null;
+  let authEmail = null;
+  try{
+    authToken = localStorage.getItem(AUTH_TOKEN_KEY);
+    authEmail = localStorage.getItem(AUTH_EMAIL_KEY);
+  }catch(e){}
+
+  function mergeJournals(a, b){
+    return {
+      book: Boolean(a.book) || Boolean(b.book),
+      eras: [...new Set([...(a.eras||[]), ...(b.eras||[])])]
+    };
+  }
+
+  async function syncJournalToServer(){
+    if(!authToken) return;
+    try{
+      await fetch('/api/journal', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+authToken },
+        body: JSON.stringify(journal)
+      });
+    }catch(e){ /* offline — local copy still holds */ }
+  }
+
+  async function pullJournalFromServer(){
+    if(!authToken) return;
+    try{
+      const res = await fetch('/api/journal', { headers:{ 'Authorization':'Bearer '+authToken } });
+      if(res.status === 401){ handleLogout(true); return; }
+      const serverJournal = await res.json();
+      journal = mergeJournals(journal, serverJournal);
+      saveJournalLocal(journal);
+      renderJournal();
+      syncJournalToServer();
+    }catch(e){ /* offline — keep local copy */ }
+  }
+
+  function recordBookReveal(){
+    if(!journal.book){
+      journal.book = true;
+      saveJournalLocal(journal);
+      renderJournal();
+      syncJournalToServer();
+    }
+  }
+  function recordEraView(i){
+    if(!journal.eras.includes(i)){
+      journal.eras.push(i);
+      saveJournalLocal(journal);
+      renderJournal();
+      syncJournalToServer();
+    }
+  }
+  function renderJournal(){
+    const log = document.getElementById('journal-log');
+    const badgeCount = document.getElementById('journal-badge-count');
+    const entries = [];
+    if(journal.book){
+      entries.push("The Corridor watched you notice what changed in Chapter 2 — the boundary that was always there, once you knew to look.");
+    }
+    journal.eras.slice().sort((a,b)=>a-b).forEach(i=>{
+      const e = ERAS[i];
+      if(e) entries.push(`The Corridor walked you through ${e.name.toLowerCase()} — ${e.year.toLowerCase()}.`);
+    });
+    if(!log){ return; }
+    if(entries.length === 0){
+      log.innerHTML = '<p class="empty-state">The Corridor hasn\'t noticed you yet.</p>';
+    } else {
+      log.innerHTML = '<ul>' + entries.map(t=>`<li>${t}</li>`).join('') + '</ul>';
+    }
+    if(badgeCount){
+      badgeCount.textContent = entries.length;
+      badgeCount.classList.toggle('empty', entries.length === 0);
+    }
+  }
+
+  function renderAuthUI(){
+    const signedOut = document.getElementById('auth-signedout');
+    const signedIn = document.getElementById('auth-signedin');
+    const emailDisplay = document.getElementById('auth-email-display');
+    const xpPanel = document.getElementById('xp-panel');
+    if(!signedOut || !signedIn) return;
+    if(authToken && authEmail){
+      signedOut.hidden = true;
+      signedIn.hidden = false;
+      emailDisplay.textContent = authEmail;
+      if(xpPanel) xpPanel.hidden = false;
+    } else {
+      signedOut.hidden = false;
+      signedIn.hidden = true;
+      if(xpPanel) xpPanel.hidden = true;
+    }
+  }
+
+  function renderXP(xp, justEarned){
+    if(!xp) return;
+    const levelNum = document.getElementById('xp-level-num');
+    const streakLabel = document.getElementById('xp-streak-label');
+    const barFill = document.getElementById('xp-bar-fill');
+    const caption = document.getElementById('xp-caption');
+    if(!levelNum) return;
+    levelNum.textContent = xp.level;
+    streakLabel.textContent = `Streak: ${xp.streak} day${xp.streak === 1 ? '' : 's'}`;
+    const pct = xp.xpForNextLevel > 0 ? Math.min(100, Math.round((xp.xpIntoLevel / xp.xpForNextLevel) * 100)) : 100;
+    barFill.style.width = pct + '%';
+    if(justEarned && xp.xpEarned > 0){
+      caption.textContent = `+${xp.xpEarned} XP for logging in — ${xp.xpIntoLevel}/${xp.xpForNextLevel} to Level ${xp.level + 1}`;
+      caption.classList.add('earned');
+    } else {
+      caption.textContent = `${xp.xpIntoLevel}/${xp.xpForNextLevel} XP to Level ${xp.level + 1}`;
+      caption.classList.remove('earned');
+    }
+  }
+
+  async function refreshXP(){
+    if(!authToken) return;
+    try{
+      const res = await fetch('/api/xp', { headers:{ 'Authorization':'Bearer '+authToken } });
+      if(res.status === 401){ handleLogout(true); return; }
+      const xp = await res.json();
+      renderXP(xp, false);
+    }catch(e){ /* offline — leave last-known display */ }
+  }
+
+  function setAuthMsg(msg, isError){
+    const el = document.getElementById('auth-msg');
+    if(!el) return;
+    el.textContent = msg;
+    el.classList.toggle('error', Boolean(isError));
+  }
+
+  async function handleAuth(kind){
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+    if(!email || !password){
+      setAuthMsg('Enter an email and password first.', true);
+      return;
+    }
+    setAuthMsg(kind === 'signup' ? 'Creating your account…' : 'Signing in…');
+    try{
+      const res = await fetch('/api/auth/' + kind, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if(!res.ok){
+        setAuthMsg(data.error || 'Something went wrong.', true);
+        return;
+      }
+      authToken = data.token;
+      authEmail = data.email;
+      try{
+        localStorage.setItem(AUTH_TOKEN_KEY, authToken);
+        localStorage.setItem(AUTH_EMAIL_KEY, authEmail);
+      }catch(e){}
+      renderAuthUI();
+      renderXP(data.xp, true);
+      setAuthMsg('');
+      await pullJournalFromServer();
+    }catch(e){
+      setAuthMsg('Could not reach the server. Try again in a moment.', true);
+    }
+  }
+
+  function handleLogout(silent){
+    authToken = null;
+    authEmail = null;
+    try{
+      localStorage.removeItem(AUTH_TOKEN_KEY);
+      localStorage.removeItem(AUTH_EMAIL_KEY);
+    }catch(e){}
+    renderAuthUI();
+    if(!silent) setAuthMsg('Signed out. Your Journal is still saved on this device.');
+  }
+
+  renderJournal();
+  renderAuthUI();
+  /* Static hosting (GitHub Pages) has no backend: swap the login box for a note, keep the local Journal. */
+  if(location.hostname.endsWith('.github.io')){
+    const bar = document.getElementById('auth-bar');
+    if(bar){
+      bar.innerHTML = '<p class="auth-msg" style="margin:0;text-align:center;">Accounts, XP, and cross-device sync are coming soon. For now your Journal is saved on this device only.</p>';
+    }
+    authToken = null;
+  }
+  if(authToken){
+    pullJournalFromServer();
+    refreshXP();
+  }
+</script>
+
+</body>
+</html>
