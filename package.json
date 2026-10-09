@@ -1,0 +1,9 @@
+{
+  "name": "hh-nexus",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@netlify/blobs": "^8",
+    "@netlify/functions": "^2"
+  }
+}
